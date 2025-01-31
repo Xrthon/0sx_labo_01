@@ -3,6 +3,7 @@ const short NUMBER_OF_BLINK = 4;
 const short BLINK_INTERVAL = 500;  
 const short TWO_SECOND  = 2000;
 const short FADE_TOTAL_TIME = 2048;
+const short FADE_TOTAL_VALUE = 256;
 
 unsigned short ledState = LOW;
 unsigned short  appState = 1; 
@@ -22,7 +23,6 @@ void setup() {
 void loop() {
   //Sinon usigned long currentMillis = ....
   currentMillis = millis();
-  
 
   switch(appState){
     case 1:
@@ -35,7 +35,7 @@ void loop() {
       break;
     case 3: 
       //Fondu de la lumiére LED 
-      fadeTheLED(FADE_TOTAL_TIME,255);
+      fadeTheLED(FADE_TOTAL_TIME,FADE_TOTAL_VALUE);
       break;
     case 4:
       //Éteindre la Led
@@ -43,13 +43,19 @@ void loop() {
       break;
   }
 }
+
+
+
+
+
 void fadeTheLED(const int TOTAL_DURATION, const short START_FADE_VALUE){
   static short brightness = START_FADE_VALUE;
-  static short fadeAmout = (brightness>=127) ? -4 : 4;
-
+  static short fadeAmout = (brightness>=127) ? -1 : 1;
   ledState = (brightness>=127) ?  HIGH: LOW;
+
   //Calculer le temps pour chaque étape
   static int durationFadeStep = (TOTAL_DURATION/(brightness/fadeAmout));
+
   //Mettre le temps de la duration positif
   durationFadeStep = (durationFadeStep < 0) ? (durationFadeStep*-1): durationFadeStep;
   static int showDA = 0;
@@ -115,6 +121,9 @@ void turnTheLEDOnOrOff(const int TIME_TO_WAIT, const int VALUE){
     }
     showDA++;
   }
+
+
+
   if (currentMillis-previousMillis >= TIME_TO_WAIT) {
   showDA=0;
   previousMillis = currentMillis;

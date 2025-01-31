@@ -1,2 +1,2 @@
-# 0sx_labo_01
-Travail pratique du cours sur le Arduino Mega
+# 0sx_labo
+Travail pratique du Système Embarqueé

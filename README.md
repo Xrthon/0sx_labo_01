@@ -1,2 +1,2 @@
 # 0sx_labo
-Travail pratique du Système Embarqueé
+Travail pratique du Système Embarqué
